@@ -20,10 +20,10 @@ function intersperse(arr, sep) {
   return arr.slice(1).reduce((xs, x) => xs.concat([sep, x]), [arr[0]]);
 }
 
-function renderPropertyNodes(arr, sep, format) {
+function renderPropertyNodes(obj, arr, sep, format) {
   switch (format) {
     case 'count':
-      return `${arr.length} items`;
+      return `${Object.keys(obj).length} items`;
     default:
       return (
         intersperse(arr, sep)
@@ -84,7 +84,7 @@ const ObjectPreview = ({ data, maxProperties, format }) => {
     return (
       <span style={styles.preview}>
         {`${object.constructor.name} {`}
-        {renderPropertyNodes(propertyNodes, ', ', format)}
+        {renderPropertyNodes(object, propertyNodes, ', ', format)}
         {'}'}
       </span>
     );
