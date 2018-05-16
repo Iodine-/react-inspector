@@ -20,10 +20,21 @@ function intersperse(arr, sep) {
   return arr.slice(1).reduce((xs, x) => xs.concat([sep, x]), [arr[0]]);
 }
 
+function renderPropertyNodes(arr, sep, format) {
+  switch (format) {
+    case 'count':
+      return `${arr.length} items`;
+    default:
+      return (
+        intersperse(arr, sep)
+      )
+  }
+}
+
 /**
  * A preview of the object
  */
-const ObjectPreview = ({ data, maxProperties }) => {
+const ObjectPreview = ({ data, maxProperties, format }) => {
   const object = data;
 
   if (
@@ -73,7 +84,7 @@ const ObjectPreview = ({ data, maxProperties }) => {
     return (
       <span style={styles.preview}>
         {`${object.constructor.name} {`}
-        {intersperse(propertyNodes, ', ')}
+        {renderPropertyNodes(propertyNodes, ', ', format)}
         {'}'}
       </span>
     );
@@ -85,9 +96,11 @@ ObjectPreview.propTypes = {
    * max number of properties shown in the property view
    */
   maxProperties: PropTypes.number,
+  format: PropTypes.string
 };
 ObjectPreview.defaultProps = {
   maxProperties: 5,
+  format: 'default'
 };
 
 export default ObjectPreview;

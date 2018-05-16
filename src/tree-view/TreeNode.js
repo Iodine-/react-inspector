@@ -36,6 +36,7 @@ class TreeNode extends Component {
         <ol role="group" style={styles.treeNodeChildNodesContainer}>
           {childNodes}
         </ol>
+        {expanded && ('}')}
       </li>
     );
   }

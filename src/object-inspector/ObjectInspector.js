@@ -81,10 +81,10 @@ const createIterator = (showNonenumerable, sortObjectKeys) => {
   return objectIterator;
 };
 
-const defaultNodeRenderer = ({ depth, name, data, isNonenumerable }) =>
-  depth === 0
-    ? <ObjectRootLabel name={name} data={data} />
-    : <ObjectLabel name={name} data={data} isNonenumerable={isNonenumerable} />;
+const defaultNodeRenderer = ({ depth, name, data, isNonenumerable, expanded, rootFormat}) =>{
+  return depth === 0
+    ? <ObjectRootLabel name={name} data={data} format={rootFormat} expanded={expanded} />
+    : <ObjectLabel name={name} data={data} isNonenumerable={isNonenumerable} />;}
 
 /**
  * Tree-view for objects
@@ -92,7 +92,7 @@ const defaultNodeRenderer = ({ depth, name, data, isNonenumerable }) =>
 class ObjectInspector extends Component {
   static defaultProps = {
     showNonenumerable: false,
-
+    rootFormat: 'default',
     theme: 'chromeLight',
   };
 
@@ -105,6 +105,8 @@ class ObjectInspector extends Component {
     name: PropTypes.string,
     /** Not required prop because we also allow undefined value */
     data: PropTypes.any,
+
+    rootFormat: PropTypes.string,
 
     /** A known theme or theme object */
     theme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),

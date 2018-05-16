@@ -78,7 +78,6 @@ class ConnectedTreeNode extends Component {
     const expanded = !!expandedPaths[path];
 
     const { nodeRenderer } = this.props;
-
     return (
       <TreeNode
         expanded={expanded}
@@ -107,6 +106,8 @@ ConnectedTreeNode.propTypes = {
   expanded: PropTypes.bool,
 
   nodeRenderer: PropTypes.func,
+
+  rootFormat: PropTypes.string
 };
 
 ConnectedTreeNode.contextTypes = {
@@ -160,7 +161,7 @@ class TreeView extends Component {
 
   render() {
     const { name, data, dataIterator } = this.props;
-    const { nodeRenderer } = this.props;
+    const { nodeRenderer, rootFormat } = this.props;
 
     const rootPath = DEFAULT_ROOT_PATH;
 
@@ -172,6 +173,7 @@ class TreeView extends Component {
         depth={0}
         path={rootPath}
         nodeRenderer={nodeRenderer}
+        rootFormat={rootFormat}
       />
     );
   }

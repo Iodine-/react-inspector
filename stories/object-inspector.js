@@ -50,6 +50,40 @@ storiesOf('Objects', module)
   ))
   .add('Object: Simple Object with name', () => (
     <Inspector showNonenumerable expandLevel={2} name="test" data={{ k: 'v' }} />
+  ))
+  .add('Object: Root Format of "count"', () => (
+    <Inspector expandLevel={2} data={{
+      "_id": "5afaee1a3c2628608825ea5a",
+      "index": 0,
+      "guid": "992e675d-1184-462e-94bf-0db67a26804b",
+      "isActive": true,
+      "balance": "$3,720.43",
+      "picture": "http://placehold.it/32x32",
+      "age": 26,
+      "eyeColor": "green",
+      "name": {
+        "first": "Carr",
+        "last": "Mcmahon"
+      },
+      "company": "PORTALIS"
+    }} showNonenumerable={false} rootFormat='count' />
+  ))
+  .add('Object: Root Format of "count" with name', () => (
+    <Inspector name='event' expandLevel={2} data={{
+      "_id": "5afaee1a3c2628608825ea5a",
+      "index": 0,
+      "guid": "992e675d-1184-462e-94bf-0db67a26804b",
+      "isActive": true,
+      "balance": "$3,720.43",
+      "picture": "http://placehold.it/32x32",
+      "age": 26,
+      "eyeColor": "green",
+      "name": {
+        "first": "Carr",
+        "last": "Mcmahon"
+      },
+      "company": "PORTALIS"
+    }} showNonenumerable={false} rootFormat='count' />
   ));
 
 storiesOf('Functions', module)
